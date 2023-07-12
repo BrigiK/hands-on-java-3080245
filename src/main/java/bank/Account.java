@@ -1,7 +1,9 @@
 package bank;
 
+import bank.exceptions.AmountException;
+
 public class Account {
-  
+
   private int id;
   private String type;
   private double balance;
@@ -36,13 +38,16 @@ public class Account {
     this.balance = balance;
   }
 
-  public void deposit(double amount)
-  {
-
+  public void deposit(double amount) throws AmountException {
+    if (amount < 1) {
+      throw new AmountException("The minium deposit is 1.00");
+    } else {
+      double newBalance = balance + amount;
+      setBalance(newBalance);
+    }
   }
 
-  public void withdraw(double amount)
-  {
-    
+  public void withdraw(double amount) {
+
   }
 }
